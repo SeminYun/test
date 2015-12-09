@@ -1,0 +1,27 @@
+
+aaaa.png
+size: 128,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cooltime_gauge33
+  rotate: true
+  xy: 2, 2
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge42
+  rotate: true
+  xy: 46, 2
+  size: 22, 40
+  orig: 42, 42
+  offset: 0, 2
+  index: -1
+cooltime_gauge51
+  rotate: false
+  xy: 88, 2
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
