@@ -1,0 +1,454 @@
+
+aaaa2.png
+size: 2048,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cooltime_gauge01
+  rotate: false
+  xy: 2, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge02
+  rotate: false
+  xy: 46, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge03
+  rotate: false
+  xy: 90, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge04
+  rotate: false
+  xy: 134, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge05
+  rotate: false
+  xy: 178, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge06
+  rotate: false
+  xy: 222, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge07
+  rotate: false
+  xy: 266, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge08
+  rotate: false
+  xy: 310, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge09
+  rotate: false
+  xy: 354, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge10
+  rotate: false
+  xy: 398, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge11
+  rotate: false
+  xy: 442, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge12
+  rotate: false
+  xy: 486, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge13
+  rotate: false
+  xy: 530, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge14
+  rotate: false
+  xy: 574, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge15
+  rotate: false
+  xy: 618, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge16
+  rotate: false
+  xy: 662, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge17
+  rotate: false
+  xy: 706, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge18
+  rotate: false
+  xy: 750, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge19
+  rotate: false
+  xy: 794, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge20
+  rotate: false
+  xy: 838, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge21
+  rotate: false
+  xy: 882, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge22
+  rotate: false
+  xy: 926, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge23
+  rotate: false
+  xy: 970, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge24
+  rotate: false
+  xy: 1014, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge25
+  rotate: false
+  xy: 1058, 20
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge26
+  rotate: false
+  xy: 1102, 20
+  size: 39, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge27
+  rotate: false
+  xy: 1143, 20
+  size: 36, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge28
+  rotate: false
+  xy: 1181, 20
+  size: 33, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge29
+  rotate: false
+  xy: 1216, 20
+  size: 31, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge30
+  rotate: false
+  xy: 1249, 20
+  size: 28, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge31
+  rotate: false
+  xy: 1279, 20
+  size: 26, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge32
+  rotate: false
+  xy: 1307, 20
+  size: 24, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge33
+  rotate: false
+  xy: 1333, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge34
+  rotate: false
+  xy: 1357, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge35
+  rotate: false
+  xy: 1381, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge36
+  rotate: false
+  xy: 1405, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge37
+  rotate: false
+  xy: 1429, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge38
+  rotate: false
+  xy: 1453, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge39
+  rotate: false
+  xy: 1477, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge40
+  rotate: false
+  xy: 1501, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge41
+  rotate: false
+  xy: 1525, 20
+  size: 22, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+cooltime_gauge42
+  rotate: false
+  xy: 1549, 22
+  size: 22, 40
+  orig: 42, 42
+  offset: 0, 2
+  index: -1
+cooltime_gauge43
+  rotate: false
+  xy: 1573, 26
+  size: 22, 36
+  orig: 42, 42
+  offset: 0, 6
+  index: -1
+cooltime_gauge44
+  rotate: true
+  xy: 1573, 2
+  size: 22, 33
+  orig: 42, 42
+  offset: 0, 9
+  index: -1
+cooltime_gauge45
+  rotate: false
+  xy: 1597, 31
+  size: 22, 31
+  orig: 42, 42
+  offset: 0, 11
+  index: -1
+cooltime_gauge46
+  rotate: false
+  xy: 1621, 34
+  size: 22, 28
+  orig: 42, 42
+  offset: 0, 14
+  index: -1
+cooltime_gauge47
+  rotate: false
+  xy: 1645, 36
+  size: 22, 26
+  orig: 42, 42
+  offset: 0, 16
+  index: -1
+cooltime_gauge48
+  rotate: false
+  xy: 1669, 38
+  size: 22, 24
+  orig: 42, 42
+  offset: 0, 18
+  index: -1
+cooltime_gauge49
+  rotate: false
+  xy: 1693, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge50
+  rotate: false
+  xy: 1717, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge51
+  rotate: false
+  xy: 1741, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge52
+  rotate: false
+  xy: 1765, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge53
+  rotate: false
+  xy: 1789, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge54
+  rotate: false
+  xy: 1813, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge55
+  rotate: false
+  xy: 1837, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge56
+  rotate: false
+  xy: 1861, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge57
+  rotate: false
+  xy: 1885, 40
+  size: 22, 22
+  orig: 42, 42
+  offset: 0, 20
+  index: -1
+cooltime_gauge58
+  rotate: true
+  xy: 1549, 2
+  size: 18, 22
+  orig: 42, 42
+  offset: 4, 20
+  index: -1
+cooltime_gauge59
+  rotate: true
+  xy: 2, 3
+  size: 15, 22
+  orig: 42, 42
+  offset: 7, 20
+  index: -1
+cooltime_gauge60
+  rotate: false
+  xy: 1608, 2
+  size: 12, 22
+  orig: 42, 42
+  offset: 10, 20
+  index: -1
+cooltime_gauge61
+  rotate: false
+  xy: 1909, 40
+  size: 10, 22
+  orig: 42, 42
+  offset: 12, 20
+  index: -1
+cooltime_gauge62
+  rotate: true
+  xy: 26, 11
+  size: 7, 22
+  orig: 42, 42
+  offset: 15, 20
+  index: -1
+cooltime_gauge63
+  rotate: true
+  xy: 1621, 27
+  size: 5, 22
+  orig: 42, 42
+  offset: 17, 20
+  index: -1
+cooltime_gauge64
+  rotate: true
+  xy: 1597, 26
+  size: 3, 22
+  orig: 42, 42
+  offset: 19, 20
+  index: -1
