@@ -569,7 +569,7 @@ spine.AtlasAttachmentParser.prototype = {
     {
         var region = this.atlas.findRegion(path);
         if (!region) throw "Region not found in atlas: " + path + " (skinned mesh attachment: " + name + ")";
-        var attachment = new spine.SkinnedMeshAttachment(name);
+        var attachment = new spine.WeightedMeshAttachment(name);
         attachment.rendererObject = region;
         attachment.regionU = region.u;
         attachment.regionV = region.v;
@@ -3826,11 +3826,11 @@ var atlasParser = module.exports = function () {
         var atlasOptions = {
             crossOrigin: resource.crossOrigin,
             xhrType: Resource.XHR_RESPONSE_TYPE.TEXT,
-            //metadata: resource.metadata.spineMetadata
+//            metadata: resource.metadata.spineMetadata
         };
         var imageOptions = {
             crossOrigin: resource.crossOrigin,
-            //metadata: resource.metadata.imageMetadata
+ //           metadata: resource.metadata.imageMetadata
         };
         var baseUrl = resource.url.substr(0, resource.url.lastIndexOf('/') + 1);
 
