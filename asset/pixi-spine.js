@@ -848,6 +848,7 @@ spine.Bone.prototype = {
 
                 if (psx < 0) {
                     r = -r;
+                } else {
                     sin = -sin;
                 }
                 temp = pa * cos + pb * sin;
@@ -1482,7 +1483,7 @@ spine.IkConstraint.apply2 = function (parent, child, targetX, targetY, bendDir, 
             x = l1 - a;
             dist = x * x;
             if (dist < minDist) {
-                minAngle = PI;
+                minAngle = Math.PI;
                 minDist = dist;
                 minX = x;
             }
@@ -3830,7 +3831,7 @@ var atlasParser = module.exports = function () {
         };
         var imageOptions = {
             crossOrigin: resource.crossOrigin,
-  //          metadata: resource.metadata.imageMetadata
+ //           metadata: resource.metadata.imageMetadata
         };
         var baseUrl = resource.url.substr(0, resource.url.lastIndexOf('/') + 1);
 
