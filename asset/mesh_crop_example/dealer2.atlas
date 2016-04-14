@@ -1,9 +1,16 @@
 
 dealer2.png
-size: 256,128
+size: 512,128
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+face
+  rotate: true
+  xy: 140, 19
+  size: 101, 134
+  orig: 101, 134
+  offset: 0, 0
+  index: -1
 hair
   rotate: true
   xy: 0, 0
