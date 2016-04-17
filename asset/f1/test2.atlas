@@ -1,0 +1,20 @@
+
+test2.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+f_face_1_fr
+  rotate: false
+  xy: 4, 4
+  size: 19, 27
+  orig: 53, 73
+  offset: 31, 14
+  index: -1
+hair04_0_fr
+  rotate: false
+  xy: 4, 35
+  size: 169, 148
+  orig: 173, 195
+  offset: 2, 44
+  index: -1
