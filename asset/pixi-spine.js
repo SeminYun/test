@@ -973,7 +973,7 @@ spine.BoundingBoxAttachment.prototype = {
     {
         x += bone.worldX;
         y += bone.worldY;
-        var m00 = bone.a, m01 = bone.c, m10 = bone.b, m11 = bone.d;
+        var m00 = bone.matrix.a, m01 = bone.matrix.c, m10 = bone.matrix.b, m11 = bone.matrix.d;
         var vertices = this.vertices;
         for (var i = 0, n = vertices.length; i < n; i += 2)
         {
@@ -3824,6 +3824,9 @@ var atlasParser = module.exports = function () {
          * have the same name
          */
         var atlasPath = resource.url.substr(0, resource.url.lastIndexOf('.')) + '.atlas';
+        //remove the baseUrl
+        atlasPath = atlasPath.replace(this.baseUrl, '');
+
         var atlasOptions = {
             crossOrigin: resource.crossOrigin,
             xhrType: Resource.XHR_RESPONSE_TYPE.TEXT,
@@ -3834,6 +3837,8 @@ var atlasParser = module.exports = function () {
  //           metadata: resource.metadata.imageMetadata
         };
         var baseUrl = resource.url.substr(0, resource.url.lastIndexOf('/') + 1);
+        //remove the baseUrl
+        baseUrl = baseUrl.replace(this.baseUrl, '');
 
         var adapter = imageLoaderAdapter(this, resource.name + '_atlas_page_', baseUrl, imageOptions);
         this.add(resource.name + '_atlas', atlasPath, atlasOptions, function (res) {
