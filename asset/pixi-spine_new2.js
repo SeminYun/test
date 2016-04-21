@@ -85,6 +85,9 @@ var spine = require('../SpineUtil');
 spine.TrackEntry = require('./TrackEntry');
 spine.AnimationState = function (stateData)
 {
+    //seminz
+    this.timeScales = {};
+    //end seminz
     this.data = stateData;
     this.tracks = [];
     this.events = [];
@@ -239,6 +242,9 @@ spine.AnimationState.prototype = {
     /** Set the current animation. Any queued animations are cleared. */
     setAnimation: function (trackIndex, animation, loop)
     {
+        //seminz
+        this.timeScale = this.timeScales[animation.name];
+        //end seminz
         var entry = new spine.TrackEntry();
         entry.animation = animation;
         entry.loop = loop;
@@ -328,11 +334,11 @@ spine.AtlasPage = require('./AtlasPage');
 spine.AtlasRegion = require('./AtlasRegion');
 var syncImageLoaderAdapter = require('../loaders/syncImageLoaderAdapter.js')
 
-spine.Atlas = function(atlasText, loaderFunction, callback) {
+spine.Atlas = function(atlasText, loaderFunction, callback, image_resolution) {
     this.pages = [];
     this.regions = [];
     if (typeof atlasText === "string") {
-        this.addSpineAtlas.call(this, atlasText, loaderFunction, callback);
+        this.addSpineAtlas.call(this, atlasText, loaderFunction, callback, image_resolution);
     }
 };
 
@@ -375,7 +381,7 @@ spine.Atlas.prototype = {
             }
         }
     },
-    addSpineAtlas: function (atlasText, loaderFunction, callback)
+    addSpineAtlas: function (atlasText, loaderFunction, callback, image_resolution)
     {
         //TODO: remove this legacy later
         if (typeof loaderFunction !== "function") {
@@ -384,6 +390,11 @@ spine.Atlas.prototype = {
             var crossOrigin = callback;
             loaderFunction = syncImageLoaderAdapter(baseUrl, crossOrigin);
             callback = null;
+
+            if (baseUrl && baseUrl.lastIndexOf('/') !== (baseUrl.length-1))
+            {
+                baseUrl += '/';
+            }
         }
 
         this.texturesLoading = 0;
@@ -434,7 +445,16 @@ spine.Atlas.prototype = {
                         page.uWrap = page.vWrap = spine.Atlas.TextureWrap.repeat;
 
                     // @ivanpopelyshev: I so want to use generators and "yield()" here, or at least promises
-                    loaderFunction(line, function (texture) {
+                    //seminz
+                    var url = line;
+                    if(image_resolution) {
+                        var new_url = baseUrl + url.replace(/\.[^/.]+$/, "") + ('@' + image_resolution + 'x.png');
+                    } else {
+                        var new_url = baseUrl + url;
+                    }
+                    //endseminz
+
+                    loaderFunction(new_url, function (texture) {
                         page.rendererObject = texture;
                         self.pages.push(page);
                         if (!page.width || !page.height) {
@@ -452,7 +472,7 @@ spine.Atlas.prototype = {
                     region.name = line;
                     region.page = page;
 
-                    var rotate = reader.readValue() == "true" ? 6 : 0;
+                    var rotate = reader.readValue() === "true" ? 6 : 0;
 
                     reader.readTuple(tuple);
                     var x = parseInt(tuple[0]);
@@ -497,10 +517,10 @@ spine.Atlas.prototype = {
                     } else {
                         // pixi v3.0.11
                         var frame2 = new PIXI.Rectangle(x, y, width, height);
-                        var crop = frame;
+                        var crop = frame2.clone();
                         trim.width = originalWidth;
                         trim.height = originalHeight;
-                        region.texture = new PIXI.Texture(region.page.rendererObject, frame, crop, trim, rotate);
+                        region.texture = new PIXI.Texture(region.page.rendererObject, frame2, crop, trim, rotate);
                     }
 
                     region.index = parseInt(reader.readValue());
@@ -581,7 +601,7 @@ spine.AtlasAttachmentParser.prototype = {
         attachment.rendererObject = region;
         attachment.setUVs(region.u, region.v, region.u2, region.v2, region.rotate);
         attachment.regionOffsetX = region.offsetX;
-        attachment.regionOffsetY = region.offsetY;
+        attachment.regionOffsetY = region.spineOffsetY;
         attachment.regionWidth = region.width;
         attachment.regionHeight = region.height;
         attachment.regionOriginalWidth = region.originalWidth;
@@ -763,8 +783,20 @@ Object.defineProperties(spine.AtlasRegion.prototype, {
     },
     offsetY: {
         get: function() {
+            console.warn("Deprecation Warning: @Hackerham: I guess, if you are using PIXI-SPINE ATLAS region.offsetY, you want a texture, right? Use region.texture from now on.");
+            return this.spineOffsetY;
+        }
+    },
+    pixiOffsetY: {
+        get: function() {
             var tex = this.texture;
             return tex.trim ? tex.trim.y : 0;
+        }
+    },
+    spineOffsetY: {
+        get: function() {
+            var tex = this.texture;
+            return this.originalHeight - this.height - (tex.trim ? tex.trim.y : 0);
         }
     },
     originalWidth: {
@@ -1094,7 +1126,7 @@ spine.BoundingBoxAttachment.prototype = {
     {
         x += bone.worldX;
         y += bone.worldY;
-        var m00 = bone.a, m01 = bone.c, m10 = bone.b, m11 = bone.d;
+        var m00 = bone.matrix.a, m01 = bone.matrix.c, m10 = bone.matrix.b, m11 = bone.matrix.d;
         var vertices = this.vertices;
         for (var i = 0, n = vertices.length; i < n; i += 2)
         {
@@ -1420,7 +1452,7 @@ spine.FfdTimeline.prototype = {
     {
         var slot = skeleton.slots[this.slotIndex];
         var slotAttachment = slot.attachment;
-        if (!slotAttachment.applyFFD || !slotAttachment.applyFFD(this.attachment)) return;
+        if (slotAttachment && (!slotAttachment.applyFFD || !slotAttachment.applyFFD(this.attachment))) return;
 
         var frames = this.frames;
         if (time < frames[0]) return; // Time is before first frame.
@@ -1749,7 +1781,7 @@ spine.MeshAttachment.prototype = {
         var texture = region.texture;
         var r = texture._uvs;
         var w1 = region.width, h1 = region.height, w2 = region.originalWidth, h2 = region.originalHeight;
-        var x = region.offsetX, y = region.offsetY;
+        var x = region.offsetX, y = region.pixiOffsetY;
         for (var i = 0; i < n; i += 2)
         {
             var u = this.regionUVs[i], v = this.regionUVs[i+1];
@@ -2649,6 +2681,10 @@ spine.SkeletonJsonParser.prototype = {
 
 
             slotData.blendMode = slotMap["blend"] && spine.SlotData.PIXI_BLEND_MODE_MAP[slotMap["blend"]] || spine.SlotData.PIXI_BLEND_MODE_MAP['normal'];
+            //seminz
+            if(!slotData.blendMode) slotData.blendMode = slotMap["additive"]?PIXI.BLEND_MODES.ADD:PIXI.BLEND_MODES.NORMAL;
+            //end seminz
+
 
             skeletonData.slots.push(slotData);
         }
@@ -3364,7 +3400,7 @@ spine.WeightedMeshAttachment.prototype = {
         var texture = region.texture;
         var r = texture._uvs;
         var w1 = region.width, h1 = region.height, w2 = region.originalWidth, h2 = region.originalHeight;
-        var x = region.offsetX, y = region.offsetY;
+        var x = region.offsetX, y = region.pixiOffsetY;
         for (var i = 0; i < n; i += 2)
         {
             var u = this.regionUVs[i], v = this.regionUVs[i+1];
@@ -3632,6 +3668,26 @@ function Spine(spineData)
      * @member {boolean}
      */
     this.autoUpdate = true;
+
+    //seminz
+    this.hitArea = null;
+    this.clickArea = null;
+    //this.hitArea = new PIXI.Rectangle();
+    //this.clickArea = new PIXI.Rectangle();
+    this.runLowerAnimation = this.spineData.findAnimation('run_lower');
+
+    this.shoot_slot = this.skeleton.findSlot('shoot');
+    if(this.shoot_slot === null){
+        this.shoot_slot = this.skeleton.findSlot('weapon_l');
+    }
+
+    var anis = this.spineData.animations;
+    for(var i in anis){
+        var ani = anis[i];
+        this.state.timeScales[ani.name] = 1.0;
+    }
+
+    this.play = true;
 }
 
 Spine.fromAtlas = function(resourceName) {
@@ -3676,6 +3732,30 @@ Object.defineProperties(Spine.prototype, {
     }
 });
 
+//by seminz
+Spine.prototype.setTimeScale = function(aniName, speed) {
+    if(this.state.timeScales[aniName] === undefined) return;
+    this.state.timeScales[aniName] = speed;
+};
+
+Spine.prototype.getCurrentAnimationName = function(index) {
+    var entry = this.state.getCurrent(index);
+    if (!entry)
+        return null;
+    else
+        return entry.animation.name;
+};
+
+Spine.prototype.getCurrentAnimationName = function(index) {
+    var entry = this.state.getCurrent(index);
+    if (!entry)
+        return null;
+    else
+        return entry.animation.name;
+};
+
+//end seminz
+
 /**
  * Update the spine skeleton and its animations by delta time (dt)
  *
@@ -3683,8 +3763,17 @@ Object.defineProperties(Spine.prototype, {
  */
 Spine.prototype.update = function (dt)
 {
+    //seminz
+    if(this.play === false) return;
+    //end seminz
+
     this.state.update(dt);
     this.state.apply(this.skeleton);
+
+    //seminz
+    if(this.preProcessing) this.preProcessing(dt);
+    //end seminz
+
     this.skeleton.updateWorldTransform();
 
     var drawOrder = this.skeleton.drawOrder;
@@ -3785,8 +3874,44 @@ Spine.prototype.update = function (dt)
                 slot.currentMesh = slot.meshes[meshName];
                 slot.currentMeshName = meshName;
             }
+
             attachment.computeWorldVertices(slot.bone.skeleton.x, slot.bone.skeleton.y, slot, slot.currentMesh.vertices);
+
         }
+        //seminz
+        else if(type === spine.AttachmentType.boundingbox) {
+            if(attachment.name == "hitarea") {
+                if(!this.hitArea) {
+                    this.hitArea = new PIXI.Rectangle();
+                    var x = 0;
+                    var y = 0;
+                    var vertices = [];
+                    vertices.length = 8;
+                    attachment.computeWorldVertices(x, y, slot.bone, vertices);
+                    var hitArea = JLib.getRectFromPoly(vertices);
+                    this.hitArea.x = hitArea.x;
+                    this.hitArea.y = hitArea.y
+                    this.hitArea.width = hitArea.width;
+                    this.hitArea.height = hitArea.height;
+                }
+            }
+            if(attachment.name == "click") {
+                if(!this.clickArea) {
+                    this.clickArea = new PIXI.Rectangle();
+                    var x = 0;
+                    var y = 0;
+                    var vertices = [];
+                    vertices.length = 8;
+                    attachment.computeWorldVertices(x, y, slot.bone, vertices);
+                    var clickArea = JLib.getRectFromPoly(vertices);
+                    this.clickArea.x = clickArea.x;
+                    this.clickArea.y = clickArea.y;
+                    this.clickArea.width = clickArea.width;
+                    this.clickArea.height = clickArea.height;
+                }
+            }
+        }
+        //seminz end
         else
         {
             slotContainer.visible = false;
@@ -3824,6 +3949,8 @@ Spine.prototype.autoUpdateTransform = function ()
  * @param attachment {spine.RegionAttachment} The attachment that the sprite will represent
  * @private
  */
+
+
 Spine.prototype.createSprite = function (slot, attachment)
 {
     var descriptor = attachment.rendererObject;
@@ -3861,6 +3988,8 @@ Spine.prototype.createMesh = function (slot, attachment)
         new Float32Array(attachment.uvs),
         new Uint16Array(attachment.triangles),
         PIXI.mesh.Mesh.DRAW_MODES.TRIANGLES);
+
+    console.log(attachment.uvs);
 
     strip.canvasPadding = 1.5;
 
