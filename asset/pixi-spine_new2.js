@@ -448,9 +448,10 @@ spine.Atlas.prototype = {
                     //seminz
                     var url = line;
                     if(image_resolution) {
-                        var new_url = baseUrl + url.replace(/\.[^/.]+$/, "") + ('@' + image_resolution + 'x.png');
+                        var ret = url.replace(/\.[^/.]+$/, "") + ('@' + image_resolution + 'x.png');
+                        var new_url = baseUrl? baseUrl + ret:ret ;
                     } else {
-                        var new_url = baseUrl + url;
+                        var new_url = baseUrl? baseUrl + url:url ;
                     }
                     //endseminz
 
