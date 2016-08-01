@@ -1,0 +1,55 @@
+
+mash_test.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+chogsu 1
+  rotate: false
+  xy: 1178, 597
+  size: 372, 414
+  orig: 374, 415
+  offset: 1, 0
+  index: -1
+chogsu2
+  rotate: true
+  xy: 656, 269
+  size: 286, 332
+  orig: 288, 334
+  offset: 1, 1
+  index: -1
+chogsu3
+  rotate: false
+  xy: 656, 559
+  size: 518, 452
+  orig: 773, 532
+  offset: 254, 1
+  index: -1
+head right horn
+  rotate: false
+  xy: 4, 4
+  size: 102, 243
+  orig: 104, 249
+  offset: 1, 1
+  index: -1
+mom
+  rotate: false
+  xy: 4, 251
+  size: 648, 760
+  orig: 670, 979
+  offset: 1, 135
+  index: -1
+teeth down
+  rotate: false
+  xy: 1554, 960
+  size: 118, 51
+  orig: 118, 51
+  offset: 0, 0
+  index: -1
+teeth up
+  rotate: false
+  xy: 992, 510
+  size: 124, 45
+  orig: 133, 47
+  offset: 8, 1
+  index: -1
